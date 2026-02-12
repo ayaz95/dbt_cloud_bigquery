@@ -1,0 +1,23 @@
+
+version: 2
+
+sources:
+  - name: staging
+    database: dbt-handson-487123
+    schema: staging    
+    tables:
+      - name: green_taxi  
+
+
+models:
+    - name: green_taxi_transformation
+      description: "A green_taxi transformation file"
+      columns:
+          - name: unique_row_id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      config:
+          materialized: table
+          alias: green_taxi_rpt
